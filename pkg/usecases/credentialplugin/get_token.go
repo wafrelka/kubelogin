@@ -36,6 +36,7 @@ type Input struct {
 	TokenCacheConfig tokencache.Config
 	GrantOptionSet   authentication.GrantOptionSet
 	TLSClientConfig  tlsclientconfig.Config
+	Username         string
 }
 
 type GetToken struct {
@@ -60,9 +61,7 @@ func (u *GetToken) Do(ctx context.Context, in Input) error {
 	tokenCacheKey := tokencache.Key{
 		Provider:        in.Provider,
 		TLSClientConfig: in.TLSClientConfig,
-	}
-	if in.GrantOptionSet.ROPCOption != nil {
-		tokenCacheKey.Username = in.GrantOptionSet.ROPCOption.Username
+		Username:        in.Username,
 	}
 
 	u.Logger.V(1).Infof("acquiring the lock of token cache")
