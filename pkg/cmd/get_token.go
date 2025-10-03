@@ -101,6 +101,7 @@ func (cmd *GetToken) New() *cobra.Command {
 				GrantOptionSet:   grantOptionSet,
 				TLSClientConfig:  o.tlsOptions.tlsClientConfig(),
 				Username:         o.authenticationOptions.Username,
+				ExtraParams:      o.authenticationOptions.AuthRequestExtraParams,
 			}
 			if err := cmd.GetToken.Do(c.Context(), in); err != nil {
 				return fmt.Errorf("get-token: %w", err)

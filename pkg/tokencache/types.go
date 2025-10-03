@@ -10,6 +10,7 @@ type Key struct {
 	Provider        oidc.Provider
 	TLSClientConfig tlsclientconfig.Config
 	Username        string
+	ExtraParams     map[string]string
 }
 
 // Config represents a configuration for the token cache.

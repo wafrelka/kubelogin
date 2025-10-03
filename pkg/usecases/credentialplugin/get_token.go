@@ -37,6 +37,7 @@ type Input struct {
 	GrantOptionSet   authentication.GrantOptionSet
 	TLSClientConfig  tlsclientconfig.Config
 	Username         string
+	ExtraParams      map[string]string
 }
 
 type GetToken struct {
@@ -62,6 +63,7 @@ func (u *GetToken) Do(ctx context.Context, in Input) error {
 		Provider:        in.Provider,
 		TLSClientConfig: in.TLSClientConfig,
 		Username:        in.Username,
+		ExtraParams:     in.ExtraParams,
 	}
 
 	u.Logger.V(1).Infof("acquiring the lock of token cache")
